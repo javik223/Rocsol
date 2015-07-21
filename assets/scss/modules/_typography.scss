@@ -1,0 +1,58 @@
+
+// Header elements font settings
+$headers: (
+	h1: (fontSize: 48, lineHeight: 52, mFontSize: 48, mLineHeight: 52, sFontSize: 36, sLineHeight: 40),
+	h2: (fontSize: 36, lineHeight: 43, mFontSize: 36, mLineHeight: 43, sFontSize: 30, sLineHeight: 38),
+	h3: (fontSize: 24, lineHeight: 32, mFontSize: 24, mLineHeight: 32, sFontSize: 24, sLineHeight: 32),
+	h4: (fontSize: 18, lineHeight: 23, mFontSize: 18, mLineHeight: 23, sFontSize: 18, sLineHeight: 23),
+	h5: (fontSize: 16, lineHeight: 26, mFontSize: 16, mLineHeight: 26, sFontSize: 16, sLineHeight: 26),
+);
+
+
+@each $elem, $prop in $headers {
+	#{$elem} {
+		font-size: rem-calc(m($prop, sFontSize));
+		line-height: rem-calc(m($prop, sLineHeight));
+		font-family: $font-family-serif;
+		margin-bottom: rem-calc(m($prop, sLineHeight)/2) !important;
+
+		@media #{$medium-up} {
+			font-size: rem-calc(m($prop, mFontSize));
+			line-height: rem-calc(m($prop, mLineHeight));
+			margin-bottom: rem-calc(m($prop, mLineHeight)/2) !important;
+		}
+
+		@media #{$large-up} {
+			font-size: rem-calc(m($prop, fontSize));
+			line-height: rem-calc(m($prop, lineHeight));
+			margin-bottom: rem-calc(m($prop, lineHeight)/2) !important;
+		}
+	}
+}
+
+body, p {
+	font-size: $base-font-size;
+	line-height: $base-line-height;
+	font-family: $base-font-family;
+	font-weight: 200;
+	color: color(gray, darker);
+	letter-spacing: 0.1px;
+}
+p {
+	margin-bottom: $base-line-height;
+}
+
+// Margin and paddings
+// No-margin top
+.nmt {
+	margin-top: 0;
+}
+.nmb {
+	margin-bottom: 0 !important;
+}
+.text-center {
+	text-align: center;
+}
+strong {
+	font-weight: 400;
+}

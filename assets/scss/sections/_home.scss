@@ -1,0 +1,132 @@
+.homeTeaser {
+	height: 100vh;
+	padding-top: $padding * 4;
+	position: relative;
+
+	.logo {
+		position: absolute;
+		bottom: $padding * 2;
+	}
+}
+.slides_wrapper {
+	@extend .container;
+	position: relative;
+	float: left;
+}
+.slides_control {
+	font-size: rem-calc(45);
+	color: color(white);
+	position: absolute;
+	bottom: 0;
+	z-index: 1000;
+	margin-bottom: $padding * 2;
+
+
+	@media #{$medium-up} {
+		font-size: rem-calc(60);
+	}
+
+
+	@media #{$large-up} {
+		padding-left: $padding * 3;
+	}
+
+	span {
+		display: inline-block;
+		padding: $padding;
+		cursor: pointer;
+		color: color(white);
+	}
+}
+.slides {
+	width: 100%;
+	height: 100vh;
+	float: left;
+	color: color(white);
+	overflow: hidden;
+
+	.slide {
+		width: 100%;
+		height: 100%;
+		position: relative;
+
+		&_header, &_teaserText {
+			position: relative;
+			z-index: 100;
+			color: color(white);
+		}
+
+		&_text {
+			@extend .row;
+			padding-top: $padding * 2;
+
+			@media #{$medium-up} {
+				padding-top: $padding * 8;
+			}
+		}
+
+		&_header {
+			font-size: rem-calc(20);
+			line-height: rem-calc(24);
+			font-weight: 400;
+		}
+
+		&_teaserText {
+			@extend .m-7-12;
+			@extend .l-5-12;
+			font-size: rem-calc(30) !important;
+			line-height: rem-calc(36);
+
+			@media #{$medium-up} {
+				font-size: rem-calc(42) !important;
+				line-height: rem-calc(52);
+			}
+		}
+	}
+
+	.bg {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		z-index: 0;
+		background-size: cover;
+		background-position: top center;
+		top: 0;
+		left: 0;
+	}
+}
+.view-all {
+	@extend .container;
+	padding-top: $padding * 8;
+	//padding-bottom: $padding * 8;
+	text-decoration: none;
+	color: color(gray);
+	@include transition(color 0.3s ease-in-out, transform 0.5s ease-in-out);
+
+	&:hover {
+		color: color(black);
+		@include transform(scale(1.2));
+		@include transform-origin(50% 50%);
+	}
+}
+
+#teaser {
+	max-width: 100%;
+	margin-top: - $padding * 3;
+	fill: transparent;
+	visibility: hidden;
+	@include transform(translateZ(0));
+
+	@media #{$medium-only} {
+		max-width: 90%;
+	}
+
+	@media #{$large-up} {
+		max-width: 70%;
+	}
+
+	path {
+		stroke: color(gray);
+		stroke-width: 1;
+	}
+}

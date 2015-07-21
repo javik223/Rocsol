@@ -1,0 +1,35 @@
+//Defaults & Framework
+@import 
+	"bourbon",
+	"compass/reset",
+	"framework/global",
+	"framework/settings",
+	"framework/grid";
+
+// Modules
+@import 
+	"modules/colors",
+	"modules/typography",
+	"modules/icons",
+	"modules/lists",
+	"modules/buttons",
+	"modules/forms",
+	"modules/spinner",
+	"modules/loader";
+
+// Sections
+
+@import
+	"sections/home",
+	"sections/general",
+	"sections/works",
+	"sections/header",
+	"sections/footer",
+	"sections/about"
+	;
+
+
+html, body {
+	width: 100% !important;
+	overflow-x: hidden;
+}

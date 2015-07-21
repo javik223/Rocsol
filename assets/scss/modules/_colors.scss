@@ -1,0 +1,27 @@
+$colors: (
+	primary: #033,
+	secondary: #000,
+	gray: #9b9b9b,
+	white: #fff,
+	gray-light: #F6F6F6,
+	black: #000,
+);
+
+// COLOR
+// Returns a specified color in the color map,
+// with a darker or lighter version incldued if needed.
+
+@function color($color, $value: 'normal') {
+	@if map-has-key($colors, $color ) {
+		@if $value == 'lighter' {
+			@return lighten(map-get($colors, $color), 10%);
+		}
+		@if $value == 'darker' {
+			@return darken(map-get($colors, $color), 10%);
+		}
+		@return map-get($colors, $color);
+	}
+
+	@return 'Unkown `#{$color}` in $colors';
+	@return null;
+}

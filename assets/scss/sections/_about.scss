@@ -1,0 +1,45 @@
+#okPitchGone {
+	fill: color(white);
+	stroke: color(white);
+	stroke-width: 1;
+}
+.whatWeAreNot {
+	> div {
+		padding-right: $padding * 1.5;
+	}
+}
+.clientsLogos {
+	padding-left: - $padding * 2;
+	> div {
+		float: left;
+		width: 50%;
+		padding: $padding * 1;
+
+		&:nth-child(2n+1) {
+			margin-left: -$padding;
+		}
+
+		@media #{$medium-only} {
+			width: 25%;
+			padding: $padding * 1.5;
+
+			&:nth-child(4n+1) {
+				margin-left: -$padding  * 1.5;
+			}
+		}
+
+		@media #{$large-up} {
+			width: 20%;
+			padding: $padding * 2;
+
+			&:nth-child(5n+1) {
+				margin-left: -$padding * 2;
+			}
+		}
+		
+	}
+
+	img {
+		opacity: 0.5;
+	}
+}
