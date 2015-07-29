@@ -87,18 +87,18 @@
     
     <div class="intro mt-pad">
         <div class="row">
-            <div class="col m-4-12">
+            <div class="col m-5-12 l-4-12">
                 <h3 class="text-light">
                     At ROCSOL, we deliver practical value and long lasting solutions in traffic safety and control, civil engineering and construction; and material/service supply and procurement. 
                 </h3>
-
-                <a href="/services.html" title="Rocsol Services" class="button button-arrow-right">More</a>
             </div>
 
             <div class="col m-7-12">
                 <img src="/assets/img/rocsol-clean-road-with-road-traffic-markings.jpg" alt="Rocsol road traffic marking">
             </div>
-        </div>
+        </div
+
+        <a href="/services.html" title="Rocsol Services" class="button button-arrow-right">More</a>
     </div>
 
     <div class="row">
@@ -233,7 +233,7 @@
 
             if (hash.length > 0 && (elem = $('.'+hash)).length > 0) {
                 var scrollLocation = elem.offset().top;
-                console.log(scrollLocation);
+                //console.log(scrollLocation);
                 TweenMax.to(window, 2, {scrollTo: {y: scrollLocation}, force3D: true, ease:Expo.easeOut});
             }
         };

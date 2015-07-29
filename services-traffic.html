@@ -314,7 +314,7 @@
 
             if (hash.length > 0 && (elem = $('.'+hash)).length > 0) {
                 var scrollLocation = elem.offset().top;
-                console.log(scrollLocation);
+                //console.log(scrollLocation);
                 TweenMax.to(window, 2, {scrollTo: {y: scrollLocation}, force3D: true, ease:Expo.easeOut});
             }
         };

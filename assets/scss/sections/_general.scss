@@ -159,6 +159,8 @@
 		text-align: center;
 		margin-bottom: $padding * 3;
 		cursor: pointer;
+		text-decoration: none;
+		color: color(primary);
 
 		&_header {
 			font-weight: bold;
