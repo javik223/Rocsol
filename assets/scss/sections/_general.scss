@@ -103,6 +103,7 @@
 
 		@media #{$medium-up} {
 			font-size: rem-calc(70);
+			line-height: 1;
 			letter-spacing: -2px;
 		}
 	}
