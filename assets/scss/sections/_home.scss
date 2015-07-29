@@ -42,6 +42,8 @@
 	}
 
 	.more {
+		@extend .c-p;
 		font-weight: 400;
+		text-decoration: none;
 	}
 }

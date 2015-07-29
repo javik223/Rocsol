@@ -6,15 +6,16 @@
     <title>Contact Rocsol</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="/assets/css/app.css">
   </head>
   <body class="contact">
     <header class="header">
   <div class="row mt-pad">
     <div class="logo">
-      <img src="/assets/img/rocsol-logo.png" data-title="Rocsol Investment Limited" alt="Rocsol Investment Limited" width="120">
+      <a href="/" title="Rocsol Homepage"><img src="/assets/img/rocsol-logo.png" data-title="Rocsol Investment Limited" alt="Rocsol Investment Limited" width="120">
 
-      <h1>Rocsol Investment Limited</h1>
+        <h1>Rocsol Investment Limited</h1></a>
     </div>
 
     <div class="menu col m-6-12">
@@ -149,7 +150,7 @@
                 .set(menu, {autoAlpha: 1, height: 0, display: 'block'})
                 .set(menuItems, {autoAlpha: 0})
                 .to(menu, 0.5, {height: menuHeight, force3D: true, ease: Expo.easeOut})
-                .staggerFromTo(menuItems, 0.8, {autoAlpha: 0, yPercent: '100%', scale: 1.025}, {autoAlpha: 1, yPercent: '0%', force3D: true, scale: 1, ease: Back.easeOut}, 0.2, "-=0.5")
+                .staggerFromTo(menuItems, 0.8, {autoAlpha: 0, yPercent: '100%', scale: 1.025, force3D: true}, {autoAlpha: 1, yPercent: '0%', force3D: true, scale: 1, ease: Back.easeOut}, 0.2)
                 ;
 
             // Reveal flyout navigation
@@ -203,18 +204,29 @@
             if (hash.length > 0 && (elem = $('.'+hash)).length > 0) {
                 var scrollLocation = elem.offset().top;
                 console.log(scrollLocation);
-                TweenMax.to(window, 2, {scrollTo: {y: scrollLocation}, ease:Expo.easeOut});
+                TweenMax.to(window, 2, {scrollTo: {y: scrollLocation}, force3D: true, ease:Expo.easeOut});
             }
         };
 
         var pageNavElems = $(".pageNav_item");
 
+        // Scroll to section when navigation item on page is clicked
         pageNavElems.on('click', function(e){
+            var _this = $(this);
+            location.hash = _this.attr('href');
             scrollToSection();
+
+            e.preventDefault();
         });
 
         // Also scrolls to section when hash changes
         window.addEventListener('hashchange', scrollToSection);
+
+        //Back to top button
+        var bttBtn = $(".btt");
+        bttBtn.on('click', function(){
+             TweenMax.to(window, 2, {scrollTo: {y: 0}, force3D: true, ease:Expo.easeOut});
+        });
     });
 </script>  </body>
 </html>
