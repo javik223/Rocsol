@@ -1,50 +1,216 @@
-.pageTitle {
-	margin-top: $padding * 11;
-	margin-bottom: $padding * 5;
+.hero {
+	@extend .container;
+	color: color(white);
+	position: relative;
+
+	img {
+		@media #{$small-only} {
+			min-height: rem-calc(360);
+			max-height: rem-calc(400);
+			max-width: none;
+		}
+
+		@media #{$medium-only} {
+			min-height: rem-calc(600);
+			max-height: rem-calc(650);
+			max-width: none;
+		}
+	}
+}
+.hero_content_wrapper {
 	@extend .row;
+	position: relative;
+	@extend .mt-pad;
+}
+.hero_content {
+	position: absolute;
+	top: $padding * 4;
+	@extend .m-6-12;
+	z-index: 1000;
+
+	h1 {
+		font-weight: 900;
+		font-size: rem-calc(60);
+		letter-spacing: -2px;
+		line-height: 1;
+		margin-bottom: $padding * 0.5 !important;
+
+		@media #{$medium-up} {
+			font-size: rem-calc(100);
+			letter-spacing: -4px;
+		}
+	}
+}
+.hero-slider_nav {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	@include transform(translateX(-50%) translateY(-50%));
+	z-index: 1000;
+	color: color(white);
+
+
+	font-size: rem-calc(100);
+}
+.hero-services {
+	overflow :hidden;
+	position: relative;
+
+	.button {
+		position: absolute;
+		bottom: $padding * 2;
+		z-index: 1000;
+		display: inline-block;
+		@include transform(scale(1.2));
+		@include transform-origin(top left);
+
+		@media #{$medium-up} {
+			bottom: $padding * 4;
+		}
+	}
+
+	img {
+		float: right;
+		margin-right: rem-calc(-150);
+
+		@media #{$large-up} {
+			float: left;
+			margin-right: 0;
+		}
+	}
+}
+.pageTitle {
+	background-color: color(primary);	
+	color: color(white);
+	padding-top: $padding * 2;
+	padding-bottom: $padding * 2;
+	margin-bottom: $padding * 2;
 	@extend .mt-pad;
 
 	@media #{$medium-up} {
-		margin-top: $padding * 15;
-		margin-bottom: $padding * 10;
+		padding-top: $padding * 4;
+		padding-bottom: $padding * 4;
+		margin-bottom: $padding * 4;
 	}
 
-	&.nmb {
-		margin-bottom: $padding * 2 !important;
+	h1 {
+		margin-bottom: 0 !important;
+		font-weight: 900;
+
+		@media #{$medium-up} {
+			font-size: rem-calc(70);
+			letter-spacing: -2px;
+		}
+	}
+}
+.grayBox {
+	background-color: lighten(color(gray), 35%);
+	padding-top: $padding * 2;
+	padding-bottom: $padding * 2;
+	margin-bottom: $padding * 2;
+
+	@media #{$medium-up} {
+		padding-top: $padding * 4;
+		padding-bottom: $padding * 4;
+		margin-bottom: $padding * 4;
+	}
+}
+
+// Set element to maximum width of 90% of tablets, desktop and large screens
+.m-w-90 {
+	@media #{$medium-up} {
+		max-width: 90% !important;
+		height: auto;
+		float: left !important;
+	}
+}
+
+
+// Back to top button that shows at the end of long pages.
+.btt {
+	text-align: center;
+	cursor: pointer;
+	padding: $padding * 2;
+	color: color(primary);
+	margin-top: $padding * 2;
+
+	@media #{$medium-up} {
+		margin-top: $padding * 4;
 	}
 
-	p {
-		margin-bottom: $padding / 2;
-		font-weight: 400;
-		text-transform: uppercase;
+	&:hover {
+		color: color(primary, darker);
 	}
 }
-.big {
-	font-size: 120%;
-	line-height: 1.6;
-}
-.bigger {
-	font-size: 140%;
-	line-height: 1.6;
-}
-.biggest {
-	font-size: 180%;
-	line-height: 1.2;
-}
-.container-gray, .container-white {
-	background-color: color(gray-light);
-	padding-top: $padding * 4;
-	padding-bottom: $padding * 4;
-}
-.container-white {
-	background-color: color(white);
-}
-.bpb {
-	padding-bottom: $padding;
-}
-ul.lists {
-	margin-bottom: $padding;
-}
-.disable-hover {
-  pointer-events: none;
+
+// Page navigation for internal links
+.pageNav {
+	@extend .grayBox;
+	@extend .mt-pad;
+
+	&_item {
+		@extend .col;
+		@extend .m-4-12;
+		//@extend .m-offset-1;
+		text-align: center;
+		margin-bottom: $padding * 3;
+		cursor: pointer;
+
+		&_header {
+			font-weight: bold;
+			display: block;
+			clear: both;
+		}
+
+		&:hover {
+			img {
+				border: 10px solid color(primary);
+				//@include transform(scale(1.5));
+			}
+
+			.pageNav_item_header {
+				color: color(primary);
+			}
+		}
+	}
+
+	img {
+		float: none;
+		margin-bottom: $padding;
+		max-width: rem-calc(220);
+		border: 10px solid transparent;
+		border-radius: 50%;
+		@include transition(border .6s ease-out);
+
+		@media #{$small-only} {
+			max-width: rem-calc(180);
+		}
+	}
+
+	&.pageNav-services {
+		.pageNav_item {
+			@extend .s-6-12;
+			@extend .m-3-12;
+
+			&:nth-child(4n+1) {
+				clear: left;
+			}
+
+			img {
+				max-width: 80%;
+			}
+
+			@media #{$small-only} {
+				padding: $padding * 0.5;
+
+				img {
+					max-width: 100%;
+				}
+
+				&:nth-child(2n+1) {
+					clear: left;
+				}
+			}
+		}
+	}
 }

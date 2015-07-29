@@ -1,33 +1,31 @@
 .footer {
-	width: 100%;
-	float: left;
-	margin-top: $padding * 8;
-	margin-bottom: $padding * 10;
-	@include transform(translateZ(0));
+    margin-top: $padding * 8;
+    margin-bottom: $padding * 4;
+    @extend .mt-pad;
+    .copyright {
+        margin-top: $padding * 1.5;
+        color: color(gray);
+        font-size: 85%;
+        @media #{$medium-up} {
+            text-align: center;
+        }
+    }
+}
 
-	.slogan {
-		letter-spacing: rem-calc(4);
-		text-transform: uppercase;
-		font-size: 80%;
-		text-align: left;
+.address,
+.telephone,
+.email {
+    @extend .m-4-12;
+}
 
-		@media #{$medium-up} {
-			text-align: right;
-		}
+.telephone {
+    @media #{$medium-up} {
+        text-align: center;
+    }
+}
 
-	}
-
-	.copyright {
-		margin-top: $padding  * 4;
-		color: lighten(color(gray), 10%);
-	}
-
-	a {
-		color: color(gray);
-		text-decoration: none;
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
+.email {
+    @media #{$medium-up} {
+        text-align: right;
+    }
 }

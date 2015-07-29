@@ -1,0 +1,20 @@
+input, 
+textarea {
+	width: 100%;
+	background-color: lighten(color(gray), 20%);
+	padding: $padding * 0.5 $padding;
+	font-size: rem-calc(16);
+	border: none;
+	margin-bottom: $padding * 0.5;
+	
+	@include placeholder {
+		color: color(black);
+	}
+}
+input[type="submit"] {
+	@extend .button;
+	width: auto;
+	font-weight: 900;
+	cursor: pointer;
+	padding: $padding $padding * 2;
+}

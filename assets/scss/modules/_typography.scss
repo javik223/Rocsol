@@ -3,7 +3,7 @@
 $headers: (
 	h1: (fontSize: 48, lineHeight: 52, mFontSize: 48, mLineHeight: 52, sFontSize: 36, sLineHeight: 40),
 	h2: (fontSize: 36, lineHeight: 43, mFontSize: 36, mLineHeight: 43, sFontSize: 30, sLineHeight: 38),
-	h3: (fontSize: 24, lineHeight: 32, mFontSize: 24, mLineHeight: 32, sFontSize: 24, sLineHeight: 32),
+	h3: (fontSize: 24, lineHeight: 32, mFontSize: 20, mLineHeight: 32, sFontSize: 24, sLineHeight: 32),
 	h4: (fontSize: 18, lineHeight: 23, mFontSize: 18, mLineHeight: 23, sFontSize: 18, sLineHeight: 23),
 	h5: (fontSize: 16, lineHeight: 26, mFontSize: 16, mLineHeight: 26, sFontSize: 16, sLineHeight: 26),
 );
@@ -13,7 +13,6 @@ $headers: (
 	#{$elem} {
 		font-size: rem-calc(m($prop, sFontSize));
 		line-height: rem-calc(m($prop, sLineHeight));
-		font-family: $font-family-serif;
 		margin-bottom: rem-calc(m($prop, sLineHeight)/2) !important;
 
 		@media #{$medium-up} {
@@ -29,17 +28,24 @@ $headers: (
 		}
 	}
 }
-
+body {
+	color: color(black);
+}
 body, p {
 	font-size: $base-font-size;
 	line-height: $base-line-height;
 	font-family: $base-font-family;
 	font-weight: 200;
-	color: color(gray, darker);
 	letter-spacing: 0.1px;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-weight: 400;
 }
 p {
 	margin-bottom: $base-line-height;
+}
+strong {
+	font-weight: 400;
 }
 
 // Margin and paddings
@@ -53,6 +59,21 @@ p {
 .text-center {
 	text-align: center;
 }
-strong {
-	font-weight: 400;
+.text-light {
+	font-weight: 100;
+}
+
+//Change text color to primary color
+.c-p {
+	color: color(primary);
+}
+
+//Link styles
+.plain {
+	color: color(primary);
+	text-decoration: none;
+
+	&:hover {
+		color: color(primary, darker);
+	}
 }

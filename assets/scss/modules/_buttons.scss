@@ -1,0 +1,18 @@
+.button {
+	padding: $padding * 0.5 $padding;
+	background-color: color(primary);
+	color: color(white);
+	text-decoration: none;
+	font-weight: 400;
+
+	&:hover {
+		background-color: color(primary, darker);
+	}
+
+	&-arrow-right {
+		&:after {
+			content: "→";
+			padding-left: $padding * 2;
+		}
+	}
+}

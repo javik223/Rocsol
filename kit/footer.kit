@@ -1,0 +1,123 @@
+ <footer class="footer">
+      <div class="row">
+         <div class="address">
+          <h4>Address</h4>
+          <p>7C Association Close, <br>Ikosi, GRA III Lagos.</p>
+        </div>
+
+        <div class="telephone">
+          <h4>Telephone</h4>
+          <p>+234(0)145 31562 <br>+234 (0)706 505 1196</p>
+        </div>
+
+        <div class="email">
+          <h4>Email</h4>
+          <p>info@rocsolinvestments.com</p>
+        </div>
+      </div>
+
+      <div class="row copyright">
+        &copy; 2015 Copyright Rocsol Investment Limited.
+      </div>
+    </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle2/20140415/jquery.cycle2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/plugins/ScrollToPlugin.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var menuBtn = $('.menu'),
+            menuOpen = false;
+
+        /*
+        * Reveal and hide settings for flyout menu.
+        * The idea is to animate the height of the menu from
+        * zero the actual height. Then fade the individual items into view.
+        */
+        var Menu = (function(){
+            var 
+                playHead = new TimelineMax({yoyo: true, paused: true}),
+                menu = $(".nav_wrapper"),
+                menuHeight = menu.outerHeight(),
+                menuItems = menu.find('.nav-list').find('li'),
+                header = $(".header")
+                ;
+                totalFromTop = header.height() + (parseInt(header.css('margin-top')) * 2);
+                // Make Menu items wrapper start below the header
+                TweenMax.set(menu, {top: (totalFromTop + 'px')});
+
+                console.log(totalFromTop);
+
+           // Menu Settings
+            playHead
+                .set(menu, {autoAlpha: 1, height: 0, display: 'block'})
+                .set(menuItems, {autoAlpha: 0})
+                .to(menu, 0.5, {height: menuHeight, force3D: true, ease: Expo.easeOut})
+                .staggerFromTo(menuItems, 0.8, {autoAlpha: 0, yPercent: '100%', scale: 1.025}, {autoAlpha: 1, yPercent: '0%', force3D: true, scale: 1, ease: Back.easeOut}, 0.2, "-=0.5")
+                ;
+
+            // Reveal flyout navigation
+            function show() {
+                playHead.timeScale(1);
+                playHead.play();
+            }
+
+            // hide flyout navigation
+            function hide() {
+                playHead.timeScale(3);
+                playHead.reverse();
+            }
+
+            return {
+                show: show,
+                hide: hide
+            };
+
+        })();
+
+
+        /*
+        * Activate and deactivate the menu offcanvas menu
+        * when the Menu Navigation Button is clicked.
+        */
+        menuBtn.on('click', function(){
+            console.log("I was clicked");
+
+            if (menuOpen === false) {
+                Menu.show();
+            } else {
+                Menu.hide();
+            }
+
+            menuOpen = !menuOpen;
+        });
+
+        /*
+        * Internal subnavigation on specific pages.
+        * Clicking on each link scrolls the window down to the section
+        * on the page.
+        */
+        $
+
+        var scrollToSection = function() {
+            // Get the current location hash and strip it of the '#' symbol
+            var elem,
+                hash = location.hash ? location.hash. slice(1) : '';
+
+            if (hash.length > 0 && (elem = $('.'+hash)).length > 0) {
+                var scrollLocation = elem.offset().top;
+                console.log(scrollLocation);
+                TweenMax.to(window, 2, {scrollTo: {y: scrollLocation}, ease:Expo.easeOut});
+            }
+        };
+
+        var pageNavElems = $(".pageNav_item");
+
+        pageNavElems.on('click', function(e){
+            scrollToSection();
+        });
+
+        // Also scrolls to section when hash changes
+        window.addEventListener('hashchange', scrollToSection);
+    });
+</script>

@@ -1,45 +1,22 @@
-#okPitchGone {
-	fill: color(white);
-	stroke: color(white);
-	stroke-width: 1;
-}
-.whatWeAreNot {
-	> div {
-		padding-right: $padding * 1.5;
-	}
-}
-.clientsLogos {
-	padding-left: - $padding * 2;
-	> div {
-		float: left;
-		width: 50%;
-		padding: $padding * 1;
+.hero-vision {
+	padding-top: $padding * 2;
+	padding-bottom: $padding * 2;
+	color: color(white);
+	background-size: cover;
+	background-repeat: no-repeat;
+	@include transform(translate3d(0, 0, 0));
 
-		&:nth-child(2n+1) {
-			margin-left: -$padding;
-		}
 
-		@media #{$medium-only} {
-			width: 25%;
-			padding: $padding * 1.5;
-
-			&:nth-child(4n+1) {
-				margin-left: -$padding  * 1.5;
-			}
-		}
-
-		@media #{$large-up} {
-			width: 20%;
-			padding: $padding * 2;
-
-			&:nth-child(5n+1) {
-				margin-left: -$padding * 2;
-			}
-		}
+	@media #{$medium-up} {
+		padding-top: $padding * 4;
+		padding-bottom: $padding * 4;
 		
 	}
+}
+.hero-vision_title {
+	padding-bottom: $padding * 2;
+	margin-bottom: $padding  * 2;
+	font-weight: bold;
 
-	img {
-		opacity: 0.5;
-	}
+	border-bottom: 2px solid color(white);
 }
