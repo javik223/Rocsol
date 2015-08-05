@@ -6,6 +6,7 @@ textarea {
 	font-size: rem-calc(16);
 	border: none;
 	margin-bottom: $padding * 0.5;
+	@include appearance(none);
 	
 	@include placeholder {
 		color: color(black);

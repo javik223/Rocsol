@@ -42,6 +42,13 @@
 			overflow: hidden;
 			float: none;
 		}
+
+		img {
+			@media #{$small-only} {
+				max-width: rem-calc(120);
+				height: auto;
+			}
+		}
 	}
 }
 .header_wrapper {

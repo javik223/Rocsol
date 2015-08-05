@@ -195,7 +195,6 @@ $(document).ready(function(){
 			var v = $(obj.contents).appendTo($worksWrapper).css({opacity: 0}).addClass('justadded');
 
 			TweenMax.staggerFromTo(".justadded", 1, {autoAlpha: 0, yPercent: "20%"}, {autoAlpha: 1, yPercent: "0%", z:0.001, className: "-=justadded", force3D: true}, 0.2);
-			
 
 	}
 
