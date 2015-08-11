@@ -1,216 +1,303 @@
 $(document).ready(function(){
-	// Initialize scroll reveal
+    var menuBtn = $('.menu'),
+        menuOpen = false;
 
-	var $work = $(".work");
-		$('.slides_wrapper').htmlgl();
+    /*
+    * Reveal and hide settings for flyout menu.
+    * The idea is to animate the height of the menu from
+    * zero the actual height. Then fade the individual items into view.
+    */
+    var Menu = (function(){
+        var 
+            playHead = new TimelineMax({yoyo: true, paused: true}),
+            menu = $(".nav_wrapper"),
+            menuHeight = menu.outerHeight(),
+            menuItems = menu.find('.nav-list').find('li'),
+            header = $(".header")
+            ;
+            totalFromTop = header.height() + (parseInt(header.css('margin-top')) * 2);
+            // Make Menu items wrapper start below the header
+            TweenMax.set(menu, {top: (totalFromTop + 'px')});
 
-		$('body').on('mouseenter', ".work", descAnimIn)
-				.on('mouseleave', ".work", descAnimOut);
+            //console.log(totalFromTop);
 
-	function descAnimIn() {
-		var $elem = $(this),
-			$desc = $(this).find('.work_desc'),
-			$img = $(this).find('img'),
-			$sub = $elem.find('p'),
-			$main = $elem.find('h3');
+       // Menu Settings
+        playHead
+            .set(menu, {autoAlpha: 1, height: 0, display: 'block'})
+            .set(menuItems, {autoAlpha: 0})
+            .to(menu, 0.5, {height: menuHeight, force3D: true, ease: Expo.easeOut})
+            .staggerFromTo(menuItems, 0.8, {autoAlpha: 0, yPercent: '100%', scale: 1.025, force3D: true}, {autoAlpha: 1, yPercent: '0%', force3D: true, scale: 1, ease: Back.easeOut}, 0.2)
+            ;
 
-		TweenMax.set($desc, {visibility: "visible", autoAlpha: 0});
-		TweenMax.set([$sub, $main], {autoAlpha: 0});
-		TweenMax.to($desc, 1, {autoAlpha: 1});
-		TweenMax.to($img, 3, {scale: 1.2, rotationY: "-6deg", rotationX: "-6deg", transformOrigin: "top center", ease:Expo.easeOut});
-		TweenMax.fromTo($sub, 1, {autoAlpha: 0, yPercent: "100%"}, {autoAlpha: 1, yPercent: "0%", ease:Power4.easeInOut, force3D: true} );
-		TweenMax.fromTo($main, 1, {autoAlpha: 0, yPercent: "100%"}, {autoAlpha: 1, yPercent: "0%", ease:Power4.easeInOut, force3D: true} );
-		
-	}
+        // Reveal flyout navigation
+        function show() {
+            playHead.timeScale(1);
+            playHead.play();
+        }
 
-	function descAnimOut() { 
-		var $elem = $(this),
-			$desc = $(this).find('.work_desc'),
-			$img = $(this).find('img'),
-			$sub = $elem.find('p'),
-			$main = $elem.find('h3');
+        // hide flyout navigation
+        function hide() {
+            playHead.timeScale(3);
+            playHead.reverse();
+        }
 
-		TweenMax.fromTo($main, 1, {autoAlpha: 1, yPercent: "0%"}, {autoAlpha: 0, yPercent: "100%", ease:Power4.easeInOut, force3D: true});
-		TweenMax.fromTo($sub, 1, {autoAlpha: 1, yPercent: "0%"}, {autoAlpha: 0, yPercent: "100%", ease:Power4.easeInOut, force3D: true} );
-		TweenMax.to($desc, 1, {autoAlpha: 1});
-		TweenMax.to($img, 3, {scale: 1, rotationY: "0deg", rotationX: "0deg", transformOrigin: "top center", ease:Expo.easeOut});
-		TweenMax.set([$sub, $main], {autoAlpha: 0, onComplete: function(){
-			TweenMax.to($desc, 1, {autoAlpha: 0});
-		}});
-	}
+        return {
+            show: show,
+            hide: hide
+        };
 
-	var Menu = (function() {
-
-		// Timeline for Menu Button
-		// If the Hamburger button is clicked, the OffCanvas Navigation
-		// slides into view from the top. This implementation uses
-		// SVG clip-path instead of the regular translate.
-		var menuTimeline = new TimelineMax({yoyo: true, paused: true, force3D: true}),
-			menuBtn = $(".nav-icon"),
-			offCanvasMenu = $(".offCanvasMenu"),
-			navLists = offCanvasMenu.find('li'),
-			otherElems = [offCanvasMenu.find('h4'), offCanvasMenu.find('p')],
-			wW = $(window).width(),
-			wH = $(window).height();
-
-		this.isOpen = isOpen = false;
+    })();
 
 
-		var init = function() {
-			menuTimeline
-					.fromTo(offCanvasMenu, 0.3, {autoAlpha: 0, yPercent: "-100%"}, {autoAlpha: 1, yPercent: "0%", force3D: true})
-					.set(navLists, {display: "block", autoAlpha: 0})
-					.staggerFromTo(navLists, 0.6, {z: 0.001, autoAlpha: 0, yPercent: '50%'}, {autoAlpha: 1, yPercent: '0%', force3D: true, ease: Quad.easeOut}, 0.2)
-					.staggerFromTo(otherElems, 0.3, {autoAlpha: 0, yPercent: '50%'}, {autoAlpha: 1, yPercent: '0%', force3D: true}, 0.1, "-=0.2");
+    /*
+    * Activate and deactivate the menu offcanvas menu
+    * when the Menu Navigation Button is clicked.
+    */
+    menuBtn.on('click', function(){
+        //console.log("I was clicked");
 
-			// Listen for click event on Menu Icon and activate menu
-			menuBtn.on('click', showHideMenu);
-		};
+        if (menuOpen === false) {
+            Menu.show();
+        } else {
+            Menu.hide();
+        }
 
-		function showMenu() {
-			menuTimeline.timeScale(1);
-			menuTimeline.play();
-		}
+        menuOpen = !menuOpen;
+    });
 
-		function hideMenu() {
-			menuTimeline.timeScale(2);
-			menuTimeline.reverse();
-		}
+    /*
+    * Internal subnavigation on specific pages.
+    * Clicking on each link scrolls the window down to the section
+    * on the page.
+    */
 
-		function showHideMenu() {
-			// Toggle closed an open for the Menu Icon	
-			menuBtn.toggleClass('close-icon');
+    var scrollToSection = function() {
+        // Get the current location hash and strip it of the '#' symbol
+        var elem,
+            hash = location.hash ? location.hash. slice(1) : '';
 
-			if (isOpen === false) {
-				showMenu();
-				this.isOpen = isOpen = true;
-			} else {
-				hideMenu();
-				this.isOpen = isOpen = false;
-			}
-		}
+        if (hash.length > 0 && (elem = $('.'+hash)).length > 0) {
+            var scrollLocation = elem.offset().top;
+            //console.log(scrollLocation);
+            TweenMax.to(window, 2, {scrollTo: {y: scrollLocation}, force3D: true, ease:Expo.easeOut});
+        }
+    };
 
-		return {
-			init: init
-		};
-	})();
+    var pageNavElems = $(".pageNav_item");
 
-	Menu.init();
+    // Scroll to section when navigation item on page is clicked
+    pageNavElems.on('click', function(e){
+        var _this = $(this);
+        location.hash = _this.attr('href');
+        scrollToSection();
 
-	var homeTeaser = function() {
-		this.playHead = new TimelineMax({yoyo: true, paused: true});
-		$teaser = $("#teaser");
-		this.$teaserElems = {
-			main: $teaser,
-			brands: $teaser.find(".brands"),
-			ideas: $teaser.find(".ideas"),
-			people: $teaser.find(".people"),
-			experiences: $teaser.find(".experience"),
-			shapes: $teaser.find("path")
-		};
+        e.preventDefault();
+    });
 
-		this.init();
-	};
+    // Also scrolls to section when hash changes
+    window.addEventListener('hashchange', scrollToSection);
 
-	homeTeaser.prototype.init = function() {
-		this.playHead.set(this.$teaserElems.main, {autoAlpha: 1});
-		this.playHead.staggerFromTo(this.$teaserElems.shapes, 3, { drawSVG:'0', fill: "transparent", stroke: "gray", scale: 1.1}, { drawSVG: true, fill: "#DBDBDB", stroke: "transparent", scale: 1}, 0.1);
-		this.playHead.play();
-	};
+    //Back to top button
+    var bttBtn = $(".btt");
+    bttBtn.on('click', function(){
+         TweenMax.to(window, 2, {scrollTo: {y: 0}, force3D: true, ease:Expo.easeOut});
+    });
 
-	myTeaser = new homeTeaser();
+    function Gallery() {
+       this.navClicked = false;
+       this.homeOpen = true;
 
-	function animateOkPitchGone() {
-		var $okPitchGone = $("#okPitchGone"),
-			$okPitchGonePaths = $okPitchGone.find("path"),
-			OPG = new TimelineMax({yoyo: true, paused: true});
+       var 
+            gallerySections = $(".gallery_sections"),
+            galleryImages = $(".gallery_images"),
+            galleryNavWrapper = $(".gallery_nav_mask"),
+            navElems = $(".gallery_nav"),
+            gallery_icon = $(".gallery_nav_icon"),
+            gallery_spinner = $(".gallery_spinner"),
+            galleryImagesItems = galleryImages.find('img');
 
-			OPG
-				.set($okPitchGone, {autoAlpha: 1})
-				.staggerFromTo($okPitchGonePaths, 3, { drawSVG:'0', fill: "transparent", stroke: "gray", scale: 1.1}, { drawSVG: true, fill: "#DBDBDB", stroke: "transparent", scale: 1}, 0.1)
-				.play();
-	}
 
-	if ($("#okPitchGone").length > 0) {
-		var waypoint = $("#okPitchGone").waypoint({
-			offset: 'bottom-in-view',
-			handler: function() {
-				animateOkPitchGone();
-			},
-			triggerOnce: true
-		});
-	}
+       var calWrapperWidth = function() {
+            var items = navElems.find('li');
+            var width = 0;
 
-	$loadMore = $(".load-more");
+            $(".gallery_nav_wrapper").find('li').each(function(){
+                var _this = $(this);
 
-	$loadMore.on('click', function(e){
-		$href = $(this).attr('href');
-		loadWorks($href);
+                width += _this.outerWidth();
+                //console.log(_this.outerWidth());
+            });
+           return width;
+         };
 
-		e.preventDefault();
-	});
+        var loadImages = function(href) {
+            var 
+                images, 
+                self = this,
+                links = {}, // Cache visited link contents
+                gallery_images = $(".gallery_images"),
+                link = ''+href;
 
-	// Load more works, and append to current page
-	function loadWorks(link) {
-		$.ajax({
-			url: link,
-			beforeSend: function() {
-				showSpinner();
-			}
-		}).done(function(data){
-			var results = {},
-				docFrag = document.createElement("div");
-			docFrag.innerHTML = data;
+                if (links[link] !== null) {
+                    // Load image from URL and return the content of the DOM content containers
+                    $.get(href)
+                        .done(function(data) {
+                            var documentFrag = $(data);
 
-			// Get all works item
-			results.contents = docFrag.querySelector(".works_wrapper").innerHTML;
+                        images = documentFrag.find('.gallery_images div');
 
-			// get next link
-			results.nextLink = (docFrag.querySelectorAll(".load-more").length > 0) ? docFrag.querySelector(".load-more").getAttribute('href') : '';
+                        // Cache elements
+                        links[''+href] = images;
 
-			insertContent(results);
-		});
-	}
+                        $images = gallery_images.html('').append(links[link]).hide().find('img');
+                        gallery_images.imagesLoaded()
+                            .done(function(){
+                                TweenMax.set($images, {autoAlpha: 0, yPercent: "50%"});
+                                TweenMax.set(gallery_images, {display: 'block'});
+                                TweenMax.staggerTo($images, 1, {autoAlpha: 1, yPercent:"0%", force3D: true, ease:Power4.easeOut, onComplete: function(){
+                                    hideSpinner();
+                                }}, 0.1);
+                            });
 
-	function showSpinner() {
-		$loadMore.html('<div class="spinner"></div>');
-	}
 
-	function removeSpinner() {
-		$loadMore.html('<div class="container"><span class="icon-plus"></span></div>');
-	}
+                        //.fadeIn(2000, hideSpinner);
+                        gallery_images.lightGallery({
+                            controls: true,
+                            thumbnail: true,
+                            preload: 4,
+                            cssEasing:'ease-in-out',
+                            speed: 600
+                       });
 
-	function insertContent(obj) {
-		var $loadMore = $(".load-more"),
-			$worksWrapper = $(".works_wrapper");
+                        if (self.navClicked === false) {
+                            showGalleryImages();
+                            //showNav();
+                        }
+                    });
+                } else {
+                    console.log("Yes Buddy");
+                    gallery_images.html('').append(links[link]);
 
-			if (obj.nextLink === '' ) {
-				$loadMore.attr('href', '');
-				TweenMax.to($loadMore, 0.3, {autoAlpha: 0});
-			} else {
-				$loadMore.attr('href', obj.nextLink);
-				removeSpinner();
-			}
-			
-			var v = $(obj.contents).appendTo($worksWrapper).css({opacity: 0}).addClass('justadded');
+                    if (self.navClicked === false) {
+                        showGalleryImages();
+                        //showNav();
+                    }
+                }
+                    showGalleryImages();
+            
+                // Hide spinner
+        };
 
-			TweenMax.staggerFromTo(".justadded", 1, {autoAlpha: 0, yPercent: "20%"}, {autoAlpha: 1, yPercent: "0%", z:0.001, className: "-=justadded", force3D: true}, 0.2);
+/*           var hideSections = function(elem) {
+            TweenMax.staggerTo(gallerySectionItems, 0.6, {autoAlpha: 0, onComplete: showGalleryImages}, -0.2 );
+       }*/
 
-	}
+       var showGalleryImages = function() {
+            TweenMax.to(gallerySections, 1, {xPercent: "-100%", ease:Expo.easeOut});
+            TweenMax.to(galleryImages, 1, {xPercent: "-100%", ease:Expo.easeOut});
+           };
 
+       var showNav = function() {
+            // Fade in Navigation wrapper
+            TweenMax.set(galleryNavWrapper, {autoAlpha: 0, display: 'block'});
+            setTimeout(function(){
+                TweenMax.to(galleryNavWrapper, 2, {autoAlpha: 1});
+            }, 600);
+
+            // Display internal navigation elements
+            TweenMax.set(navElems, {display: 'block'});
+
+            // Set width of the navigation elements
+            $(".gallery_nav_wrapper").width(calWrapperWidth() + 100);
+
+             activateGalleryNav();
+       };
+
+       var goBack = function() {
+            TweenMax.to(gallerySections, 1, {xPercent: "0%", ease:Expo.easeOut});
+            TweenMax.to(galleryImages, 1, {xPercent: "-0%", ease:Expo.easeOut});
+       };
+
+       // Activate momentum scrolling on navigation elements using IScroll
+       var activateGalleryNav = function() {
+            var scroll = scroll || new IScroll(".gallery_nav_mask", {
+                    scrollX: true,
+                    scrollY: false,
+                    mousewheel: true,
+                    click: true
+
+            });
+       };
+
+       var hideSpinner = function() {
+            var spinnerClass = $(".spinner").remove();
+            if (gallery_spinner.hasClass('show')) {
+                TweenMax.to(gallery_spinner, 0.6, {className: "-=show"});
+            }
+       };
+
+       var showSpinner = function(elem, navClicked) {
+            this.navClicked = (navClicked === true) ? true : false;
+
+            var spinner = $('<svg version="1.1" class="spinner" xmlns="http://www.w3.org/2000/svg"xmlns:xlink="http://www.w3.org/1999/xlink"x="0px"y="0px"viewBox="0 0 80 80"xml:space="preserve"> <path id="spinner"fill="#fff"d="M40,72C22.4,72,8,57.6,8,40C8,22.4, 22.4,8,40,8c17.6,0,32,14.4,32,32c0,1.1-0.9,2-2,2 s-2-0.9-2-2c0-15.4-12.6-28-28-28S12,24.6,12,40s12.6, 28,28,28c1.1,0,2,0.9,2,2S41.1,72,40,72z"> <animateTransform attributeType="xml"attributeName="transform"type="rotate"from="0 40 40"to="360 40 40"dur="0.6s"repeatCount="indefinite"/> </path> </svg>'); 
+            var spinnerClass = $(".spinner").remove();
+
+            if (this.navClicked) {
+                gallery_spinner.html('').addClass('show').append(spinner);
+            } else {
+                elem.append(spinner);
+            }
+        };
+
+        // Show Navigation controller
+        showNav();
+
+       return {
+            showSpinner: showSpinner,
+            loadImages: loadImages,
+            goBack: goBack
+       };
+    }
+
+    galleryNavIcon =  $(".gallery_nav_icon");
+
+    galleryNavIcon.on('click', function(){
+        gallery.goBack();
+    });
+
+    var gallerySectionItems = $(".gallery_sections").find('.item');
+
+    var gallery = (gallerySectionItems.length > 0) ? new Gallery() : '';
+
+    gallerySectionItems.on('click', function(){
+        var _this = $(this);
+        gallery.showSpinner(_this, false);
+        gallery.loadImages(_this.data('href'));
+    });
+
+    var navElems = $(".gallery_nav").find('li');
+    navElems.on('click', function(e){
+        var _this = $(this),
+            _href = _this.find('a').attr('href'),
+            _elem = $('.gallery_images');
+
+        if (!_this.hasClass('gallery_nav_icon')) {
+            navElems.removeClass('active');
+            _this.addClass('active');
+
+            gallery.showSpinner(_this, true);
+            gallery.loadImages(_href);
+        }
+
+        //gallery.loadImages(_href, _elem);
+
+        e.preventDefault();
+    });
+
+    singleGalleryPage = $(".gallery_shift");
+
+    if (singleGalleryPage.length > 0) {
+        TweenMax.to(".gallery_sections", 1, {xPercent: "-100%", ease:Expo.easeOut});
+        TweenMax.to(".gallery_images", 1, {xPercent: "-100%", ease:Expo.easeOut});
+    }
 });
-
-
-var body = document.body,
-    timer;
-
-window.addEventListener('scroll', function() {
-  clearTimeout(timer);
-  if(!body.classList.contains('disable-hover')) {
-    body.classList.add('disable-hover');
-  }
-  
-  timer = setTimeout(function(){
-    body.classList.remove('disable-hover');
-  },200);
-}, false);

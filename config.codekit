@@ -20,6 +20,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/assets\/css\/lightGallery.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/assets\/css\/lightGallery.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/assets\/img\/construction-and-building.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -471,6 +480,17 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/assets\/js\/iscroll.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/assets\/js\/iscroll.js",
+		"outputAbbreviatedPath": "\/assets\/js\/min\/iscroll-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/assets\/js\/lig2djd.js": {
 		"fileType": 64,
 		"ignore": 0,
@@ -482,12 +502,34 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/assets\/js\/lightGallery.min.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/assets\/js\/lightGallery.min.js",
+		"outputAbbreviatedPath": "\/assets\/js\/min\/lightGallery.min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/assets\/js\/min\/htmlgl-min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/assets\/js\/min\/htmlgl-min.js",
 		"outputAbbreviatedPath": "\/assets\/js\/min\/min\/htmlgl-min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/assets\/js\/min\/iscroll-min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/assets\/js\/min\/iscroll-min.js",
+		"outputAbbreviatedPath": "\/assets\/js\/min\/min\/iscroll-min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -868,6 +910,167 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
+	"\/bower_components\/lightgallery\/bower.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/lightgallery\/bower.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/bower_components\/lightgallery\/bower-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/bower_components\/lightgallery\/demo\/img1.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 218476,
+		"inputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/img1.jpg",
+		"outputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/img1.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/bower_components\/lightgallery\/demo\/img2.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 190086,
+		"inputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/img2.jpg",
+		"outputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/img2.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/bower_components\/lightgallery\/demo\/img3.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 209455,
+		"inputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/img3.jpg",
+		"outputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/img3.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/bower_components\/lightgallery\/demo\/img4.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 128233,
+		"inputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/img4.jpg",
+		"outputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/img4.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/bower_components\/lightgallery\/demo\/index.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/index.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/bower_components\/lightgallery\/demo\/thumb1.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 19271,
+		"inputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/thumb1.jpg",
+		"outputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/thumb1.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/bower_components\/lightgallery\/demo\/thumb2.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 17807,
+		"inputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/thumb2.jpg",
+		"outputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/thumb2.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/bower_components\/lightgallery\/demo\/thumb3.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 20401,
+		"inputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/thumb3.jpg",
+		"outputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/thumb3.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/bower_components\/lightgallery\/demo\/thumb4.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 16651,
+		"inputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/thumb4.jpg",
+		"outputAbbreviatedPath": "\/bower_components\/lightgallery\/demo\/thumb4.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/bower_components\/lightgallery\/light-gallery\/css\/lightGallery.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/lightgallery\/light-gallery\/css\/lightGallery.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/bower_components\/lightgallery\/light-gallery\/js\/lightGallery.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/lightgallery\/light-gallery\/js\/lightGallery.js",
+		"outputAbbreviatedPath": "\/bower_components\/lightgallery\/light-gallery\/js\/min\/lightGallery-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/bower_components\/lightgallery\/light-gallery\/js\/lightGallery.min.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/lightgallery\/light-gallery\/js\/lightGallery.min.js",
+		"outputAbbreviatedPath": "\/bower_components\/lightgallery\/light-gallery\/js\/min\/lightGallery.min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/bower_components\/lightgallery\/lightGallery.jquery.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/lightgallery\/lightGallery.jquery.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/bower_components\/lightgallery\/lightGallery.jquery-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/bower_components\/lightgallery\/package.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/lightgallery\/package.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/bower_components\/lightgallery\/package-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
 	"\/config.rb": {
 		"fileType": 131072,
 		"ignore": 0,
@@ -882,6 +1085,15 @@
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/contact.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/emtpy.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/emtpy.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -913,6 +1125,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1
 		},
+	"\/kit\/emtpy.kit": {
+		"fileType": 2048,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/kit\/emtpy.kit",
+		"outputAbbreviatedPath": "\/emtpy.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 1
+		},
 	"\/kit\/footer.kit": {
 		"fileType": 2048,
 		"ignore": 1,
@@ -937,6 +1158,15 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/kit\/index.kit",
 		"outputAbbreviatedPath": "\/index.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 1
+		},
+	"\/kit\/projects-single.kit": {
+		"fileType": 2048,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/kit\/projects-single.kit",
+		"outputAbbreviatedPath": "\/projects-single.html",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1
 		},
@@ -984,6 +1214,15 @@
 		"outputAbbreviatedPath": "\/services.html",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1
+		},
+	"\/projects-single.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/projects-single.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
 		},
 	"\/projects.html": {
 		"fileType": 8192,
@@ -1043,7 +1282,7 @@
 	"iconImageName": "brackets_blue"
 	},
 "projectSettings": {
-	"alwaysUseExternalServer": 0,
+	"alwaysUseExternalServer": 1,
 	"animateCSSInjections": 1,
 	"autoApplyPSLanguageSettingsStyle": 0,
 	"autoprefixerBrowserString": "> 1%, last 2 versions, Firefox ESR, Opera 12.1",

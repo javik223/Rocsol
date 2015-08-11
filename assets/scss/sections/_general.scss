@@ -35,13 +35,20 @@
 
 	h1 {
 		font-weight: 900;
-		font-size: rem-calc(60);
-		letter-spacing: -2px;
+		font-size: rem-calc(48);
+		letter-spacing: -1px;
 		line-height: 1;
 		margin-bottom: $padding * 0.5 !important;
 
-		@media #{$medium-up} {
+		@media #{$medium-only} {
+			font-size: rem-calc(80);
+			line-height: 1;
+			letter-spacing: -3px;
+		}
+
+		@media #{$large-up} {
 			font-size: rem-calc(100);
+			line-height: 1;
 			letter-spacing: -4px;
 		}
 	}

@@ -1,11 +1,11 @@
 
 // Header elements font settings
 $headers: (
-	h1: (fontSize: 48, lineHeight: 52, mFontSize: 48, mLineHeight: 52, sFontSize: 36, sLineHeight: 40),
-	h2: (fontSize: 36, lineHeight: 43, mFontSize: 36, mLineHeight: 43, sFontSize: 30, sLineHeight: 38),
-	h3: (fontSize: 24, lineHeight: 32, mFontSize: 20, mLineHeight: 32, sFontSize: 24, sLineHeight: 32),
-	h4: (fontSize: 18, lineHeight: 23, mFontSize: 18, mLineHeight: 23, sFontSize: 18, sLineHeight: 23),
-	h5: (fontSize: 16, lineHeight: 26, mFontSize: 16, mLineHeight: 26, sFontSize: 16, sLineHeight: 26),
+	h1: (fontSize: 48, lineHeight: 52, mFontSize: 48, mLineHeight: 52, sFontSize: 36, sLineHeight: 48),
+	h2: (fontSize: 36, lineHeight: 43, mFontSize: 30, mLineHeight: 38, sFontSize: 24, sLineHeight: 32),
+	h3: (fontSize: 24, lineHeight: 32, mFontSize: 20, mLineHeight: 32, sFontSize: 20, sLineHeight: 28),
+	h4: (fontSize: 18, lineHeight: 23, mFontSize: 18, mLineHeight: 23, sFontSize: 16, sLineHeight: 24),
+	h5: (fontSize: 16, lineHeight: 26, mFontSize: 16, mLineHeight: 26, sFontSize: 14, sLineHeight: 20),
 );
 
 
@@ -32,11 +32,16 @@ body {
 	color: color(black);
 }
 body, p {
-	font-size: $base-font-size;
-	line-height: $base-line-height;
+	font-size: $base-font-size-mobile;
+	line-height: $base-line-height-mobile;
 	font-family: $base-font-family;
 	font-weight: 200;
 	letter-spacing: 0.1px;
+
+	@media #{$medium-up} {
+		font-size: $base-font-size;
+		line-height: $base-line-height;
+	}
 }
 h1,h2,h3,h4,h5,h6 {
 	font-weight: 400;

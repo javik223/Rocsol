@@ -1,7 +1,3 @@
-.gallery_wrapper {
-	width: 100%;
-	overflow: hidden;
-}
 .gallery {
 	width: 200%;
 	max-width: none;
@@ -10,32 +6,84 @@
 	overflow: hidden;
 	position: relative;
 }
-.gallery_nav_mask {
+.gallery_outer {
+	position: relative;
+	width: 100%;
 	margin-top: $padding;
 	margin-bottom: $padding;
-	padding-top: $padding;
-	padding-bottom: $padding;
+}
+.gallery_nav_mask {
 	//padding-left: $padding;
 	background-color: lighten(color(gray), 30%);
 	position: relative;
-	visibility: hidden;
+	//visibility: hidden;
 	overflow: hidden;
+	position: relative;
 }
 .gallery_nav_wrapper {
-	width: 200%;
+	//width: 5000px;
+	height: 100%;
+	float: left;
+	position: relative; 
+	transform: translate3d(0,0,0);
+	user-select: none;
+	text-size-adjust: none;
+	padding-top: $padding;
+	padding-bottom: $padding;
+}
+.gallery_spinner {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: rem-calc(90);
+	z-index: 100;
+	text-align: center;
+	display: none;
+
+	&.show{
+		display: block;
+		background-color: color(primary);
+	}
 }
 .gallery_nav_icon {
 	@extend h3;
+	margin-bottom: 0 !important;
 	color: color(primary);
 	cursor: pointer;
+
+	.spinner {
+		position: absolute;
+		top: 50%;
+		left: $padding;
+		transform: translateY(-50%) translateX(50%);
+		padding-right: $padding;
+
+		path {
+			fill: color(primary);
+		}
+	}
 }
 .gallery_nav {
-	display: none;
+	//display: none;
 	padding-left: $padding;
+	width: auto;
+	width: 100%;
+	height: 100%;
+	padding-right: $padding;
 
 	li {
-		display: inline;
-		padding-right: $padding;
+		float: left;
+		display: block;
+		width: auto;
+		height: 100%;
+		position: relative;
+		transform: translate3d(0,0,0.001);
+		//display: inline;
+		padding: $padding*0.25 $padding;
+		border-radius: rem-calc(20);
+		border: rem-calc(2) solid transparent;
+		transition: all 0.6s ease-in-out;
 		
 		a {
 			color: color(primary);
@@ -46,8 +94,6 @@
 		&.active {
 			border: rem-calc(2) solid color(primary);
 			border-radius: rem-calc(20);
-			padding: $padding*0.25 $padding;
-			margin-right: $padding * 0.5;
 		}
 	}
 }
@@ -86,17 +132,21 @@
 		position: absolute;
 		left: 50%;
 		top: 50%;
-		transform: translateX(-50%) translateY(-50%);
 		color: color(white);
+		width: 100%;
+		text-align: center;
+		transform: translateX(-50%) translateY(-50%) scale(0.8);
 	}
 }
 .gallery_images {
 	width: 50%;
 	//background-color: red;
 	float: left;
+	cursor: pointer;
 
 	img {
 		flaot: left;
+		position: relative;
 	}
 
 	.item {
@@ -108,6 +158,36 @@
 
 		@media #{$medium-up} {
 			border: rem-calc(4) solid transparent;
+		}
+	}
+}
+
+.lg-slide {
+	text-align: center;
+
+	img {
+		float: none;
+	}
+
+	.caption {
+		width: 100%;
+		background-color: rgba(color(black), 0.5);
+		color: color(white);
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		@extend .mt-pad;
+		white-space: normal !important;
+
+		h4 {
+			color: color(white);
+			text-align: center;
+			@extend .col;
+			@extend .m-6-12;
+			@extend .m-offset-3;
+			@extend .mt-pad;
+			padding-top: $padding;
+			padding-bottom: $padding * 3;
 		}
 	}
 }
