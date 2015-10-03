@@ -2,6 +2,7 @@
 	@extend .container;
 	color: color(white);
 	position: relative;
+	overflow-x: hidden;
 
 	img {
 		@media #{$small-only} {
@@ -18,6 +19,29 @@
 			max-height: rem-calc(650);
 			max-width: none;
 		}
+	}
+
+	a {
+		color: inherit;
+	}
+}
+.cycle-pager {
+	padding-top: $padding;
+	padding-bottom: $padding;
+	text-align: center;
+	width: 100%;
+	font-size: rem-calc(40);
+	float: left;
+
+	span {
+		padding-left: $padding * 0.2;
+		padding-right: $padding * 0.2;
+		color: color(gray);
+		cursor: pointer;
+	}
+
+	.cycle-pager-active {
+		color: color(primary);
 	}
 }
 .hero_content_wrapper {

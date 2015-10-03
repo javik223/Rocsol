@@ -34,3 +34,31 @@ html, body {
 	width: 100% !important;
 	overflow-x: hidden;
 }
+
+.contactForm {
+	span {
+		width: 100%;
+		display: inline-block;
+	}
+}
+
+.wpcf7-validation-errors {
+	border: none !important;
+}
+.wpcf7-response-output {
+	margin: 0 !important;
+	color: color(primary);
+	padding-left: 0 !important;
+	float: left;
+}
+.ajax-loader {
+	clear: both;
+}
+.wpcf7-form-control {
+	float: left !important;
+	margin-left: 0 !important;
+	width: 100% !important;
+}
+.wpcf7-mail-sent-ng, .wpcf7-mail-sent-ok {
+	border: none !important;
+}

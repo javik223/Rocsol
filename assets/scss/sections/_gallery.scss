@@ -28,8 +28,14 @@
 	transform: translate3d(0,0,0);
 	user-select: none;
 	text-size-adjust: none;
-	padding-top: $padding;
-	padding-bottom: $padding;
+	padding-top: $padding * 0.5;
+	padding-bottom: $padding * 0.5;
+
+	
+	@media #{$medium-up} {
+		padding-top: $padding;
+		padding-bottom: $padding;
+	}
 }
 .gallery_spinner {
 	position: absolute;
@@ -64,6 +70,11 @@
 		}
 	}
 }
+.gallery_wrapper {
+	float: left;
+	width: 100%;
+	overflow-x: hidden;
+}
 .gallery_nav {
 	//display: none;
 	padding-left: $padding;
@@ -97,6 +108,87 @@
 		}
 	}
 }
+
+.nav-controls_left, .nav-controls_right {
+	//background-image: linear-gradient(-90deg, rgba(255,255,255,0.00) 25%, #fff 100%);
+	background-color: rgba(color(primary), 0.8);
+	font-size: rem-calc(80);
+	font-weight: 100;
+	font-family: 'Helvetica Neue',  Arial;
+	line-height: 0.6;
+	vertical-align: middle;
+	position: absolute;
+	top: 0;
+	z-index: 5000;
+	display: inline-block;
+	color: color(white);
+	user-select: none;
+	cursor: pointer;
+
+	&:hover {
+		background-color: darken(rgba(color(primary), 0.8), 5%);
+	}
+
+	@media #{$medium-up} {
+		font-size: rem-calc(80);
+		line-height: 0.9;
+	}
+
+	span {
+		position: absolute;
+		top: 0;
+
+		@media #{$small-only} {
+			left: 0;
+		}
+	}
+}
+.nav-controls_left {
+	span {
+		@media #{$medium-up} {
+			left: $padding * 0.5;
+		}
+	}
+}
+.nav-controls_right {
+	span {
+		@media #{$medium-up} {
+			right: $padding * 0.5;
+		}
+	}
+}
+
+.hidden {
+	visibility: hidden;
+	opacity: 0;
+}
+.nav-controls_left {
+	top: 0;
+	left: 0;
+	height: 100%;
+	padding-right: $padding * 0.5;
+	padding-left: $padding * 0.5;
+
+	@media #{$medium-up} {
+		padding-right: $padding;
+		padding-left: $padding;
+	}
+}
+.nav-controls_right {
+	height: 100%;
+	//background-image: linear-gradient(89deg, rgba(255,255,255,0.00) 0%, #fff 75%);
+	padding-left: $padding * 0.5;
+	padding-right: $padding * 0.5;
+	position: absolute;
+	left: none;
+	right: 0;
+
+	@media #{$medium-up} {
+		padding-left: $padding;
+		padding-right: $padding;
+	}
+}
+
 .gallery_sections {
 	width: 50%;
 	float: left;
@@ -207,4 +299,8 @@ $duration: 1.4s;
   margin: 0;
   width: rem-calc(50);
   background-color: transparent;
+}
+
+.clear {
+	clear: both;
 }

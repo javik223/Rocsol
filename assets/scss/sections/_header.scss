@@ -1,6 +1,12 @@
 .header {
-	margin-top: $padding * 2;
-	margin-bottom: $padding * 2;
+	margin-top: $padding * 0.5;
+	margin-bottom: $padding * 0.5;
+
+
+	@media #{$medium-up} {
+		margin-top: $padding * 2;
+		margin-bottom: $padding * 2;
+	}
 
 	.row {
 		position: relative;
@@ -19,6 +25,7 @@
 		padding-top: $padding;
 		padding-bottom: $padding;
 		margin-top: -$padding;
+		margin-bottom: -$padding;
 
 
 		@media #{$medium-up} {
@@ -45,7 +52,7 @@
 
 		img {
 			@media #{$small-only} {
-				max-width: rem-calc(120);
+				max-width: rem-calc(80);
 				height: auto;
 			}
 		}
@@ -62,8 +69,13 @@
 	width: 100%;
 	overflow: hidden;
 	visibility: hidden;
-	top: $padding * 10;
+	top: $padding;
 	@include transform(translate3d(0,0,0.001));
+	back-face-visibility: hidden;
+
+	@media #{$medium-up} {
+		top: $padding * 5;
+	}
 }
 .nav {
 	@extend .container;

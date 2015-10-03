@@ -65,6 +65,9 @@ $(document).ready(function(){
         menuOpen = !menuOpen;
     });
 
+    // Window Width
+    var wW = $("body").width();
+
     /*
     * Internal subnavigation on specific pages.
     * Clicking on each link scrolls the window down to the section
@@ -76,10 +79,10 @@ $(document).ready(function(){
         var elem,
             hash = location.hash ? location.hash. slice(1) : '';
 
-        if (hash.length > 0 && (elem = $('.'+hash)).length > 0) {
+        if (hash.length > 0 && (elem = $('#'+hash)).length > 0) {
             var scrollLocation = elem.offset().top;
-            //console.log(scrollLocation);
-            TweenMax.to(window, 2, {scrollTo: {y: scrollLocation}, force3D: true, ease:Expo.easeOut});
+            console.log(scrollLocation);
+            TweenMax.to(window, 2, {scrollTo: {y: scrollLocation+2}, ease:Expo.easeOut});
         }
     };
 
@@ -157,6 +160,7 @@ $(document).ready(function(){
                                 TweenMax.staggerTo($images, 1, {autoAlpha: 1, yPercent:"0%", force3D: true, ease:Power4.easeOut, onComplete: function(){
                                     hideSpinner();
                                 }}, 0.1);
+                                showGalleryImages();
                             });
 
 
@@ -170,20 +174,22 @@ $(document).ready(function(){
                        });
 
                         if (self.navClicked === false) {
-                            showGalleryImages();
+                            //showGalleryImages();
                             //showNav();
                         }
+                    }).error(function(){
+                        alert("Error loading content");
                     });
                 } else {
-                    console.log("Yes Buddy");
+                    //console.log("Yes Buddy");
                     gallery_images.html('').append(links[link]);
 
                     if (self.navClicked === false) {
-                        showGalleryImages();
+                        //showGalleryImages();
                         //showNav();
                     }
                 }
-                    showGalleryImages();
+                    //showGalleryImages();
             
                 // Hide spinner
         };
@@ -220,12 +226,61 @@ $(document).ready(function(){
 
        // Activate momentum scrolling on navigation elements using IScroll
        var activateGalleryNav = function() {
-            var scroll = scroll || new IScroll(".gallery_nav_mask", {
+            window.scroll = new IScroll(".gallery_nav_mask", {
                     scrollX: true,
                     scrollY: false,
                     mousewheel: true,
                     click: true
 
+            });
+
+            var gallery_left = $(".nav-controls_left"),
+                gallery_right = $(".nav-controls_right");
+
+            scroll.on('scrollEnd', function(){
+                showHideGalleryNav();
+            });
+
+            function showHideGalleryNav(){
+                if (Math.abs(scroll.x) === 0) {
+                    //console.log("We are at the topmost left");
+
+                    if (!gallery_left.hasClass('hidden')) {
+                        TweenMax.to(gallery_left, 0.6, {className: "+=hidden"}); 
+                    }
+                } 
+                if (Math.abs(scroll.x) === Math.abs(scroll.maxScrollX)) {
+                    //console.log("We are at the topmost right");
+
+                    if (!gallery_right.hasClass('hidden')) {
+                      TweenMax.to(gallery_right, 0.6, {className: "+=hidden"}); 
+                    }
+                }
+
+                if (Math.abs(scroll.x) > 0 && Math.abs(scroll.x) < Math.abs(scroll.maxScrollX)) {
+                    if (gallery_left.hasClass('hidden')) {
+                       TweenMax.to(gallery_left, 0.6, {className: "-=hidden"}); 
+                    }
+                }
+                if (Math.abs(scroll.x) < Math.abs(scroll.maxScrollX)) {
+                    if (gallery_right.hasClass('hidden')) {
+                      TweenMax.to(gallery_right, 0.6, {className: "-=hidden"}); 
+                    }
+                }
+            }
+
+            
+            gallery_left.on('click', function(){
+                if(Math.abs(scroll.x) > 0) {
+                    scroll.scrollBy(wW/5, 0, 1000);
+                    showHideGalleryNav();
+                }
+            });
+            gallery_right.on('click', function(){
+               if(Math.abs(scroll.x) < Math.abs(scroll.maxScrollX)) {
+                 scroll.scrollBy(-wW/5, 0, 1000);
+                 showHideGalleryNav();
+               }
             });
        };
 
@@ -269,13 +324,30 @@ $(document).ready(function(){
 
     var gallery = (gallerySectionItems.length > 0) ? new Gallery() : '';
 
-    gallerySectionItems.on('click', function(){
-        var _this = $(this);
-        gallery.showSpinner(_this, false);
-        gallery.loadImages(_this.data('href'));
+    var navElems = $(".gallery_nav").find('li');
+
+    gallerySectionItems.each(function() {
+        var $this = $(this);
+
+        $this.on('click', function(){
+            var _this = $(this),
+                 currentIndex = _this.index(),
+                 targetNavItem =  navElems.eq(currentIndex+1);
+
+            gallery.showSpinner(_this, false);
+            gallery.loadImages(_this.data('href'));
+            navElems.removeClass('active');
+
+
+           targetNavItem.addClass('active');
+
+           //TweenMax.to(".gallery_nav_mask", 2, {scrollTo: {x: targetNavItem.offset().left}, force3D: true, ease:Expo.easeOut});
+           scroll.scrollToElement(navElems[currentIndex]);
+
+            console.log(currentIndex);
+        });
     });
 
-    var navElems = $(".gallery_nav").find('li');
     navElems.on('click', function(e){
         var _this = $(this),
             _href = _this.find('a').attr('href'),
@@ -300,4 +372,25 @@ $(document).ready(function(){
         TweenMax.to(".gallery_sections", 1, {xPercent: "-100%", ease:Expo.easeOut});
         TweenMax.to(".gallery_images", 1, {xPercent: "-100%", ease:Expo.easeOut});
     }
+
+    // Form action for contact form submission
+    var contactForm = $(".contactForm");
+
+    contactForm.on('submit', function(e){
+        var formAction = $(this).attr('action'),
+            data = $(this).serialize();
+
+        $.ajax({
+            url: formAction,
+            method: 'post',
+            data: data
+        }).done(function(data){
+            console.log(data);
+        });
+
+        e.preventDefault();
+    });
+
+
+
 });
